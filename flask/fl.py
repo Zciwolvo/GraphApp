@@ -1,20 +1,20 @@
 from flask import Flask, render_template, request, jsonify
 from flask_socketio import SocketIO, emit
 from dotenv import load_dotenv
-from os import getenv
+from os import getenv, environ
 
 from Functions import generate_matrix, create_graph, bfs
 
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="flask/static", template_folder="flask/templates")
 app.config["SECRET_KEY"] = getenv("SECRET")
 socketio = SocketIO(app)
 
 
 @app.route("/")
 def index():
-    return render_template("index2.html")
+    return render_template("index.html")
 
 
 @app.route("/generate_circles", methods=["POST"])
@@ -42,5 +42,5 @@ def handle_move(data):
 
 
 if __name__ == "__main__":
-    app.debug = True
-    socketio.run(app)
+    PORT = environ.get("PORT")
+    socketio.run(app, port=PORT)
