@@ -7,7 +7,7 @@ from Functions import generate_matrix, create_graph, bfs
 
 load_dotenv()
 
-app = Flask(__name__, static_folder="flask/static", template_folder="flask/templates")
+app = Flask(__name__)
 app.config["SECRET_KEY"] = getenv("SECRET")
 socketio = SocketIO(app)
 
