@@ -6,6 +6,7 @@ var y = 0;
 var circles = [];
 var layers = [];
 var colors = [];
+var matrix = [];
 
 function generateCircles(numCircles, connectionChance, startPoint) {
   console.log("Generating circles...");
@@ -22,9 +23,30 @@ function generateCircles(numCircles, connectionChance, startPoint) {
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       var circleData = JSON.parse(xhr.responseText);
-      console.log(circleData);
       circles = addCircles(circleData);
       layers = circleData[Object.keys(circleData).length - 1];
+      colors = generateColors(layers);
+      matrix = circleData[0].matrix;
+    }
+  };
+}
+
+function updateCircles(startPoint, matrix) {
+  console.log("Updating circles...");
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "/update_circles");
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xhr.send(
+    JSON.stringify({
+      startPoint: startPoint,
+      matrix: matrix,
+    })
+  );
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var circleData = JSON.parse(xhr.responseText);
+      layers = circleData;
+      console.log(layers, startPoint);
       colors = generateColors(layers);
     }
   };
@@ -100,8 +122,9 @@ function generateColors(layers) {
   var colors = [];
   for (var i = 0; i < layers.length; i++) {
     var color = getRandomColor();
-    if (i > 0 && colors.length < 20) {
-      while (color in colors) {
+    console.log(color, colors);
+    if (colors.length < 20) {
+      while (colors.indexOf(color) !== -1) {
         color = getRandomColor();
       }
     }
@@ -111,6 +134,7 @@ function generateColors(layers) {
 }
 
 var generateCirclesButton = document.getElementById("generate-circles");
+
 generateCirclesButton.addEventListener("click", function () {
   var numCirclesInput = document.getElementById("num-circles");
   var connectionChanceInput = document.getElementById("connection-chance");
@@ -119,6 +143,14 @@ generateCirclesButton.addEventListener("click", function () {
   var connectionChance = parseInt(connectionChanceInput.value);
   var startPoint = parseInt(startPointInput.value);
   generateCircles(numCircles, connectionChance, startPoint);
+});
+
+var generateCirclesButton = document.getElementById("update-circles");
+
+generateCirclesButton.addEventListener("click", function () {
+  var startPointInput = document.getElementById("new-start-point");
+  var startPoint = parseInt(startPointInput.value);
+  updateCircles(startPoint, matrix);
 });
 
 var isDragging = false;

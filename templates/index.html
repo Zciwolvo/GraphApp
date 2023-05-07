@@ -3,23 +3,50 @@
   <link rel="favicon" href="{{ url_for('static', filename='circle.png') }}" />
   <head>
     <title>GraphApp</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <label for="num-circles">Number of vertices:</label>
-    <input type="number" id="num-circles" name="num-circles" value="6" /><br />
+    <div style="display: flex; flex-direction: row">
+      <div>
+        <label for="num-circles">Number of vertices:</label>
+        <input
+          type="number"
+          id="num-circles"
+          name="num-circles"
+          value="6"
+        /><br />
 
-    <label for="connection-chance">Connection Chance:</label>
-    <input
-      type="number"
-      id="connection-chance"
-      name="connection-chance"
-      value="40"
-    /><br />
-
-    <label for="start-point">Starting Point:</label>
-    <input type="number" id="start-point" name="start-point" value="0" /><br />
-
-    <button id="generate-circles">Generate Circles</button>
+        <label for="connection-chance">Connection Chance:</label>
+        <input
+          type="number"
+          id="connection-chance"
+          name="connection-chance"
+          value="40"
+        /><br />
+        <label for="start-point">Starting Point:</label>
+        <input
+          type="number"
+          id="start-point"
+          name="start-point"
+          value="0"
+        /><br />
+        <button style="margin-top: 10px" id="generate-circles">
+          Generate Circles
+        </button>
+      </div>
+      <div style="margin-left: 50px">
+        <label for="start-point">New Starting Point:</label>
+        <input
+          type="number"
+          id="new-start-point"
+          name="new-start-point"
+          value="0"
+        /><br />
+        <button style="margin-top: 10px" id="update-circles">
+          Change Starting Point:
+        </button>
+      </div>
+    </div>
 
     <canvas id="canvas" width="1200" height="800"></canvas>
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
