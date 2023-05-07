@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Graph Visualization</title>
+    <style>
+      canvas {
+        display: block;
+        margin: auto;
+        width: 500px;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <script>
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+
+      var vertices = {{ vertices|tojson }};
+      var edges = {{ edges|tojson }};
+
+      function draw() {
+        // Clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+
+        // Draw the edges
+        ctx.beginPath();
+        for (var i = 0; i < edges.length; i++) {
+          var edge = edges[i];
+          var start = vertices[edge.source];
+          var end = vertices[edge.target];
+          ctx.moveTo(start.x, start.y);
+          ctx.lineTo(end.x, end.y);
+        }
+        ctx.stroke();
+
+        // Draw the vertices
+        for (var i = 0; i < vertices.length; i++) {
+          var vertex = vertices[i];
+          ctx.beginPath();
+          ctx.arc(vertex.x, vertex.y, 10, 0, 2*Math.PI);
+          ctx.fillText(vertex.id, vertex.x-4, vertex.y+4);
+          ctx.stroke();
+        }
+      }
+
+      draw();
+    </script>
+  </body>
+</html>
