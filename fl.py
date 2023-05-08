@@ -90,6 +90,5 @@ def handle_move(data):
 
 
 if __name__ == "__main__":
-    app.debug = True
     PORT = environ.get("PORT")
     socketio.run(app, port=PORT)
