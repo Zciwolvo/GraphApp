@@ -101,11 +101,15 @@ function addCircle(circle, index, layer) {
   ctx.fillStyle = colors[layer];
   ctx.fill();
   ctx.stroke();
+
   ctx.fillStyle = "white";
-  ctx.font = "30px Arial";
+  ctx.strokeStyle = "black";
+  ctx.font = "40px Arial";
   var textWidth = ctx.measureText(index).width;
-  var textHeight = 30;
+  var textHeight = 40;
   ctx.fillText(index, circle.x - textWidth / 2, circle.y + textHeight / 2);
+  ctx.strokeText(index, circle.x - textWidth / 2, circle.y + textHeight / 2);
+
   ctx.fillStyle = "black";
   for (var i = 0; i < circle.connections.length; i++) {
     var connection = circle.connections[i];
