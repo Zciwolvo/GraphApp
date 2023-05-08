@@ -1,55 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <link rel="favicon" href="{{ url_for('static', filename='circle.png') }}" />
-  <head>
+<link rel="favicon" href="{{ url_for('static', filename='circle.png') }}" />
+
+<head>
     <title>GraphApp</title>
     <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div style="display: flex; flex-direction: row">
-      <div>
-        <label for="num-circles">Number of vertices:</label>
-        <input
-          type="number"
-          id="num-circles"
-          name="num-circles"
-          value="6"
-        /><br />
+</head>
 
-        <label for="connection-chance">Connection Chance:</label>
-        <input
-          type="number"
-          id="connection-chance"
-          name="connection-chance"
-          value="40"
-        /><br />
-        <label for="start-point">Starting Point:</label>
-        <input
-          type="number"
-          id="start-point"
-          name="start-point"
-          value="0"
-        /><br />
-        <button style="margin-top: 10px" id="generate-circles">
+<body>
+    <div style="display: flex; flex-direction: row">
+        <div>
+            <label for="num-circles">Number of vertices:</label>
+            <input type="number" id="num-circles" name="num-circles" value="6" /><br />
+
+            <label for="connection-chance">Connection Chance:</label>
+            <input type="number" id="connection-chance" name="connection-chance" value="40" /><br />
+            <label for="start-point">Starting Point:</label>
+            <input type="number" id="start-point" name="start-point" value="0" /><br />
+            <button style="margin-top: 10px" id="generate-circles">
           Generate Circles
         </button>
-      </div>
-      <div style="margin-left: 50px">
-        <label for="start-point">New Starting Point:</label>
-        <input
-          type="number"
-          id="new-start-point"
-          name="new-start-point"
-          value="0"
-        /><br />
-        <button style="margin-top: 10px" id="update-circles">
+        </div>
+        <div style="margin-left: 50px">
+            <label for="start-point">New Starting Point:</label>
+            <input type="number" id="new-start-point" name="new-start-point" value="0" /><br />
+            <button style="margin-top: 10px" id="update-circles">
           Change Starting Point:
         </button>
-      </div>
+        </div>
+
+        <div style="margin-left: 50px">
+            <p style="margin-top: 0;">Matrix in format [[],[],[]] for example: </br> [ [0, 1, 1, 0, 1, 0], [1, 0, 1, 0, 0, 0], [1, 1, 0, 0, 0, 0], [0, 0, 0, 0, 1, 0], [1, 0, 0, 1, 0, 1], [0, 0, 0, 0, 1, 0], ]</p>
+            <input type="text" id="graph-array" name="graph-array" value="[ [0, 1, 1, 0, 1, 0], [1, 0, 1, 0, 0, 0], [1, 1, 0, 0, 0, 0], [0, 0, 0, 0, 1, 0], [1, 0, 0, 1, 0, 1], [0, 0, 0, 0, 1, 0], ]" /><br />
+            <button style="margin-top: 10px" id="generate-circles-from-array">
+        Draw graph for Matrix:
+      </button>
+        </div>
+
     </div>
 
-    <canvas id="canvas" width="1200" height="800"></canvas>
+
+    </div>
+    <div style="display: flex; flex-direction: row">
+        <canvas id="canvas" width="1200" height="800"></canvas>
+        <div>
+            <p>matrix:</p>
+            <p id="matrix-info"></p>
+            <p>bfs layers:</p>
+            <p id="layers-info"></p>
+            <p>graph density:</p>
+            <p id="density-info"></p>
+        </div>
+    </div>
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
     <script src="{{ url_for('static', filename='js/movement.js') }}"></script>
-  </body>
+</body>
+
 </html>

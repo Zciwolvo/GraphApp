@@ -7,6 +7,7 @@ var circles = [];
 var layers = [];
 var colors = [];
 var matrix = [];
+density = 0;
 
 function generateCircles(numCircles, connectionChance, startPoint) {
   console.log("Generating circles...");
@@ -27,6 +28,31 @@ function generateCircles(numCircles, connectionChance, startPoint) {
       layers = circleData[Object.keys(circleData).length - 1];
       colors = generateColors(layers);
       matrix = circleData[0].matrix;
+      density = circleData[0].density;
+      displayData();
+    }
+  };
+}
+
+function generateCirclesFromArray(array) {
+  console.log("Generating circles...");
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "/generate_circles_from_array");
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xhr.send(
+    JSON.stringify({
+      array: array,
+    })
+  );
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var circleData = JSON.parse(xhr.responseText);
+      circles = addCircles(circleData);
+      layers = circleData[Object.keys(circleData).length - 1];
+      colors = generateColors(layers);
+      matrix = circleData[0].matrix;
+      density = circleData[0].density;
+      displayData();
     }
   };
 }
@@ -46,8 +72,8 @@ function updateCircles(startPoint, matrix) {
     if (xhr.readyState === 4 && xhr.status === 200) {
       var circleData = JSON.parse(xhr.responseText);
       layers = circleData;
-      console.log(layers, startPoint);
       colors = generateColors(layers);
+      displayData();
     }
   };
 }
@@ -122,7 +148,6 @@ function generateColors(layers) {
   var colors = [];
   for (var i = 0; i < layers.length; i++) {
     var color = getRandomColor();
-    console.log(color, colors);
     if (colors.length < 20) {
       while (colors.indexOf(color) !== -1) {
         color = getRandomColor();
@@ -145,12 +170,34 @@ generateCirclesButton.addEventListener("click", function () {
   generateCircles(numCircles, connectionChance, startPoint);
 });
 
+function displayData() {
+  var matrixInfo = document.getElementById("matrix-info");
+  var matrixString = JSON.stringify(matrix);
+  matrixInfo.innerHTML = matrixString;
+
+  var layersInfo = document.getElementById("layers-info");
+  layersString = JSON.stringify(layers);
+  layersInfo.innerHTML = layersString;
+
+  var densityInfo = document.getElementById("density-info");
+  densityInfo.innerHTML = density;
+}
+
 var generateCirclesButton = document.getElementById("update-circles");
 
 generateCirclesButton.addEventListener("click", function () {
   var startPointInput = document.getElementById("new-start-point");
   var startPoint = parseInt(startPointInput.value);
   updateCircles(startPoint, matrix);
+});
+
+var generateCirclesFromArrayButton = document.getElementById(
+  "generate-circles-from-array"
+);
+
+generateCirclesFromArrayButton.addEventListener("click", function () {
+  var array = document.getElementById("graph-array").value;
+  generateCirclesFromArray(array);
 });
 
 var isDragging = false;

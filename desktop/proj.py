@@ -30,6 +30,7 @@ def generate_matrix(n: int, p: float) -> list[int]:
         A.append(row)
     return A
 
+
 def bfs(A, start) -> list[list[int]]:
     n = len(A)
     visited = [False] * n
@@ -48,6 +49,7 @@ def bfs(A, start) -> list[list[int]]:
         if layer:
             layers.append(layer)
     return layers
+
 
 def all_paths(graph: dict[int, Vertex], layers) -> list[list[int]]:
     """Returns all possible paths between vertices in adjacent layers in graph"""
@@ -113,22 +115,15 @@ if __name__ == "__main__":
     layers = bfs(A, s)
     print(layers)
 
-
-    paths = all_paths(graph, layers)
-    print(paths)
-    
-
-
-
-    #deg = {}
-    #for v in Vertices:
+    # deg = {}
+    # for v in Vertices:
     #    deg[("index: " + str(v.index))] = v.degrees
     # print("Vertices:", deg)
     # print("Vertices sorted:", sorted(deg.items(), reverse=True, key=lambda x: x[1]))
-    #save_as_txt(A, deg)
+    # save_as_txt(A, deg)
     # for i in A:
     #    print(i)
-    #for i in range(n):
+    # for i in range(n):
     #    print("Vertex:", i)
     #    print(Vertices[i].neighbours)
     #    print(Vertices[i].degrees)
