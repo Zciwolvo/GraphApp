@@ -7,7 +7,8 @@ var circles = [];
 var layers = [];
 var colors = [];
 var matrix = [];
-density = 0;
+var degrees = [];
+var density = 0;
 
 function generateCircles(numCircles, connectionChance, startPoint) {
   console.log("Generating circles...");
@@ -29,6 +30,7 @@ function generateCircles(numCircles, connectionChance, startPoint) {
       colors = generateColors(layers);
       matrix = circleData[0].matrix;
       density = circleData[0].density;
+      degrees = circleData[0].degrees;
       displayData();
     }
   };
@@ -52,6 +54,7 @@ function generateCirclesFromArray(array) {
       colors = generateColors(layers);
       matrix = circleData[0].matrix;
       density = circleData[0].density;
+      degrees = circleData[0].degrees;
       displayData();
     }
   };
@@ -185,6 +188,10 @@ function displayData() {
 
   var densityInfo = document.getElementById("density-info");
   densityInfo.innerHTML = density;
+
+  var degreesInfo = document.getElementById("degrees-info");
+  var degreesString = JSON.stringify(degrees);
+  degreesInfo.innerHTML = degreesString;
 }
 
 var generateCirclesButton = document.getElementById("update-circles");

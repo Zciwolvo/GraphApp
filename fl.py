@@ -28,8 +28,10 @@ def generate_circles():
     circle_data = create_graph(matrix)
     layers = bfs(matrix, start_point)
     degrees_sum = 0
+    degrees: list[int] = []
     for i in range(num_circles):
         degrees_sum += circle_data[i].degrees
+        degrees.append(circle_data[i].degrees)
         x = circle_data[i].x
         y = circle_data[i].y
         radius = 40
@@ -44,6 +46,7 @@ def generate_circles():
     density = (0.5 * degrees_sum) / (0.5 * len(matrix) * (len(matrix) - 1))
     circle_data[len(circle_data)] = layers
     circle_data[0]["density"] = density
+    circle_data[0]["degrees"] = sorted(degrees, reverse=True)
     return jsonify(circle_data)
 
 
@@ -56,8 +59,10 @@ def generate_circles_from_array():
     circle_data = create_graph(matrix)
     layers = bfs(matrix, start_point)
     degrees_sum = 0
+    degrees: list[int] = []
     for i in range(len(matrix)):
         degrees_sum += circle_data[i].degrees
+        degrees.append(circle_data[i].degrees)
         x = circle_data[i].x
         y = circle_data[i].y
         radius = 40
@@ -72,6 +77,7 @@ def generate_circles_from_array():
     density = (0.5 * degrees_sum) / (0.5 * len(matrix) * (len(matrix) - 1))
     circle_data[len(circle_data)] = layers
     circle_data[0]["density"] = density
+    circle_data[0]["degrees"] = sorted(degrees, reverse=True)
     return jsonify(circle_data)
 
 
