@@ -1,0 +1,8 @@
+Ilość wierzchołków: 100
+Szansa na połączenie: 1%
+Punkt startowy: 0
+
+Wszystkie czarne wierzchołki to te, które nie posiadają połączenia z siecią główną.
+Te wierzchołki, które posiadają kolor inny niż czarny to te, które posiadają połączenie z siecią główną, a każdy kolor oznacza inną warstwę
+Graf posiada gęstość 0.009494949494949495
+Graf posiada 6 warstw

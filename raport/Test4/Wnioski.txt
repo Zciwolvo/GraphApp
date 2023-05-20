@@ -1,0 +1,7 @@
+Liczba wierzchołków: 5
+Szansa na połączenie: 100%
+punkt startowy: 0
+Matrix: [[0,1,1,1,1],[1,0,1,1,1],[1,1,0,1,1],[1,1,1,0,1],[1,1,1,1,0]]
+
+Ten graf posiada 1 gęstości, ponieważ szansa na połączenie wynosi 100%, co za tym idzie wszystkie wierzchołki są połączone ze sobą
+Graf posiada 2 warstwy, jest to punkt startowy oraz pozostałe wierzchołki, jako, że szansa wynosi 100% wszystkie połączyły się ze sobą i powstały tylko te 2 warstwy.

@@ -1,0 +1,7 @@
+Liczba wierzchołków: 10
+Szansa na połączenie: 40%
+Punkt startowy: 2
+Matrix: [[0,0,0,0,0,1,0,0,0,0],[0,0,1,1,0,0,1,0,0,1],[0,1,0,1,0,0,1,0,0,1],[0,1,1,0,1,1,1,1,0,0],[0,0,0,1,0,0,0,0,1,1],[1,0,0,1,0,0,0,0,0,1],[0,1,1,1,0,0,0,1,1,0],[0,0,0,1,0,0,1,0,0,0],[0,0,0,0,1,0,1,0,0,1],[0,1,1,0,1,1,0,0,1,0]]
+
+Graf posiada 3 warstwy
+Gęstość zależy od prawdopodobieństwa połączenia się wierzchołków, w tym wypadku jest to 40% a więc gęstość wacha się około 0.4.

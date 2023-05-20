@@ -1,0 +1,9 @@
+Ilośc wierzchołków: 6
+Szansa na połączenie: 0%
+Punkt startowy: 0
+Matrix: [[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]
+
+
+Graf posiada 1 warstwę
+Z grafu można wywnioskować, że wierzchołki nie są połączone do głównej sieci, ani nie mają sąsiadów ze względu na zbyt małe prawdopodobieństwo
+Graf ma gęstość 0, ponieważ nie występują połączenia

@@ -1,9 +1,7 @@
-from random import randint
+from random import uniform
 from collections import deque
 
 from flVertex import Vertex
-
-# TODO: Graphical web interface using Flask
 
 
 def generate_matrix(n: int, p: float) -> list[int]:
@@ -20,7 +18,7 @@ def generate_matrix(n: int, p: float) -> list[int]:
             if i == j:
                 row.append(0)
             elif j > i:
-                r = randint(1, 100)
+                r = round(uniform(0, 100), 2)
                 if r <= p:
                     row.append(1)
                 else:
@@ -30,7 +28,8 @@ def generate_matrix(n: int, p: float) -> list[int]:
         A.append(row)
     return A
 
-def bfs(A: list[list[int]], start:int) -> list[list[int]]:
+
+def bfs(A: list[list[int]], start: int) -> list[list[int]]:
     """Breadth first search algorith generating layers of graph from matrix starting from integer start
 
     Args:
@@ -59,9 +58,9 @@ def bfs(A: list[list[int]], start:int) -> list[list[int]]:
     return layers
 
 
-def create_graph(matrix: list[int]) -> dict[int : Vertex]:
+def create_graph(matrix: list[int]) -> dict[int:Vertex]:
     """Creates list of vertices and based on given argument [matrix] assigns it's neighbours indexes"""
-    Graph: dict[int : Vertex] = {}
+    Graph: dict[int:Vertex] = {}
     for v in range(len(matrix)):
         vertex: Vertex = Vertex(v)
         vertex.get_neighbours(matrix)
