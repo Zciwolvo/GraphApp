@@ -12,6 +12,13 @@ var density = 0;
 
 function generateCircles(numCircles, connectionChance, startPoint) {
   console.log("Generating circles...");
+  if (numCircles < 2 || numCircles > 100) {
+    console.log("There is not enough or too many circles.");
+    console.log(
+      "Max number of circles has been reduced to 100 to increase performance"
+    );
+    return 0;
+  }
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "/generate_circles");
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");

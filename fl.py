@@ -22,8 +22,6 @@ def index():
 def generate_circles():
     data = request.get_json()
     num_circles = data["numCircles"]
-    if num_circles > 100:
-        return 0
     connection_chance = data["connectionChance"]
     start_point = int(data["startPoint"])
     matrix = generate_matrix(num_circles, connection_chance / 100)
