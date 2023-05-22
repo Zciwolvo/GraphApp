@@ -1,12 +1,19 @@
+<!-- no toc -->
+
 # <center> Sprawozdanie
 
+<!-- no toc -->
+
 ## <center> Matematyka Dyskretna
+
+<!-- no toc -->
 
 ### Autorzy
 
 - Igor Gawłowicz
 - Piotr Rucki
 - Krystian Niedźwiedź
+<!-- no toc -->
 
 ### Prezentowany program
 
@@ -15,6 +22,10 @@
 
 # SPIS TREŚCI
 
+- [ Sprawozdanie](#-sprawozdanie)
+  - [ Matematyka Dyskretna](#-matematyka-dyskretna)
+    - [Autorzy](#autorzy)
+    - [Prezentowany program](#prezentowany-program)
 - [SPIS TREŚCI](#spis-treści)
 - [CZĘŚĆ TECHNICZNA](#część-techniczna)
   - [WSTĘP](#wstęp)
@@ -26,6 +37,8 @@
   - [Test 2](#test-2)
   - [Test 3](#test-3)
   - [Test 4](#test-4)
+- [ARTYKUŁ](#artykuł)
+  - [_Connectedness - spójność grafu_](#connectedness---spójność-grafu)
 
 <div style="page-break-after: always;"></div>
 
@@ -115,11 +128,11 @@ def create_graph(matrix: list[int]) -> dict[int:Vertex]:
     return Graph
 ```
 
-Następnie nasz słownik jest przetwarzany przez funkcje **def bfs(A: list[list[int]], start: int) -> list[list[int]]**, która ponownie przyjmuje naszą macierz, oraz punkt startowy typu liczby całkowitej i zwraca nam listę składającą się z list zawierających liczby całkowite. Funkcja ta stosuje algorytm **Breadth First Search** czyli szukanie po szerokości. Algorytm jest zmodyfikowany w taki sposób aby zwracane wartości były posortowane na kolejne warstwy w wykresie zaczynając od punktu startowego.
+Następnie nasz słownik jest przetwarzany przez funkcje **def bfs(A: list[list[int]], start: int) -> list[list[int]]**, która ponownie przyjmuje naszą macierz, oraz punkt startowy typu liczby całkowitej i zwraca nam listę składającą się z list zawierających liczby całkowite. Funkcja ta stosuje algorytm **`breadth first search`<sup>15</sup>** czyli szukanie po szerokości. Algorytm jest zmodyfikowany w taki sposób aby zwracane wartości były posortowane na kolejne warstwy w wykresie zaczynając od punktu startowego.
 
 ```Python
 def bfs(A: list[list[int]], start: int) -> list[list[int]]:
-    """Breadth first search algorith generating layers of graph from matrix starting from integer start
+    """`breadth first search`<sup>15</sup> algorith generating layers of graph from matrix starting from integer start
 
     Args:
         A (list[list[int]]): matrix describing graph
@@ -420,3 +433,99 @@ Matrix:
 ![Test-extremum-max2](./Test4/Test4graf.png)
 
 W tym przykzie pokazujemy działanie programu dla 100% szansy na połączenie. Łatwo możemy zauważyć, że w takiej sytuacji zawsze uzyskamy tylko dwie warstwy: warstwę wierzchołka startowego i warstwę drugą zawierającą wszystkie pozostałe elementy grafu.
+
+<div style="page-break-after: always;"></div>
+
+# ARTYKUŁ
+
+## _Connectedness - spójność grafu_
+
+_`Union`<sup>1</sup> - suma grafów_
+
+We can combine two graphs to make a larger graph. If the two graphs are Gj = (V^Gj),
+E(G{)) and G2 = (V(G?), E(G2)), where V(G^) and V(G2) are disjoint, then their `union`<sup>1</sup>
+G{
+u G9 is the graph with vertex set V(G^) u V(G2) and edge family E(GX) u E(G2)
+(see Fig. 2.7).
+
+_`Isomorphic`<sup>2</sup> - izomorficzny - grafy mają tę samą strukturę graficzną_
+
+Two graphs G1 and G2 are `isomorphic`<sup>2</sup> if there is a one-one correspondence between
+the vertices of Gx and those of G2 such that the number of edges joining any two
+vertices of Gx is equal to the number of edges joining the corresponding vertices of
+G2.
+
+_`Connected`<sup>3</sup> - spójny_
+
+Most all the graphs discussed so far have been 'in one piece'. A graph is `connected`<sup>3</sup>
+if it cannot be expressed as the `union`<sup>1</sup> of two graphs, and disconnected otherwise.
+
+_`Component`<sup>4</sup> - składowa, podzbiór wierzchołków grafu_
+
+Clearly any disconnected graph G can be expressed as the `union`<sup>1</sup> of `connected`<sup>3</sup> graphs,
+each of which is a `component`<sup>4</sup> of G. For example, a graph with three components is
+shown in Fig. 2.8.
+
+_`Adjacent`<sup>5</sup> - sąsiedni - relacja między dwoma wierzchołkami \
+`Incidence`<sup>6</sup> - przynależność - relacji między wierzchołkami i krawędziami w grafie_
+
+We say that two vertices v and w of a graph G are `adjacent`<sup>5</sup> if there is an edge vw joining them, and the vertices v and w are then incident with such an edge. Similarly, two
+distinct edges e and/are `adjacent`<sup>5</sup> if they have a vertex in common (see Fig. 2.10).
+
+_`Complement`<sup>7</sup> - uzupełnienie_
+
+If G is a simple graph with vertex set V(G), its `complement`<sup>7</sup> G is the simple graph with
+vertex set V(G) in which two vertices are `adjacent`<sup>5</sup> if and only if they are not `adjacent`<sup>5</sup> in
+G.
+
+_`Self-complementary`<sup>8</sup> - samodopełniający się - graf, który ma dokładnie tyle samo krawędzi co jego dopełnienie_
+
+A simple graph that is `Isomorphic`<sup>2</sup> to its `Complement`<sup>7</sup> is `self-complementary`<sup>8</sup>.
+
+<div style="page-break-after: always;"></div>
+
+_`walk`<sup>9</sup> - spacer po grafie_
+
+Given a graph G, a `walk`<sup>9</sup> in G is a finite sequence of edges of the form VQVJ, VJV2, • • • ,
+vm-\vm-> a^
+so
+denoted by v0 —> vx —» V2 —» \* • • —> vm, in which any two consecutive
+edges are `adjacent`<sup>5</sup> or identical.
+
+_`Path`<sup>10</sup> - ścieżka - odnosi się do unikalności wierzchołków_ \
+_`Trail`<sup>11</sup> - szlak - odnosi się do unikalności krawędzi_
+
+The concept of a `walk`<sup>9</sup> is usually too general for our purposes, so we impose some
+restrictions. A `walk`<sup>9</sup> in which all the edges are distinct is a `trail`<sup>11</sup>. If, in addition, the vertices VQ, VJ, . . . , vm are distinct (except, possibly, VQ = vm), then the `trail`<sup>11</sup> is a `path`<sup>10</sup>. A
+
+_`Disconnecting set`<sup>12</sup> - zbiór rozłączający - zbiór krawędzi, których usunięcie powoduje rozłączenie_
+
+A `disconnecting set`<sup>12</sup> in a `connected`<sup>3</sup> graph G is a set of edges whose removal disconnects G.
+
+_`cutset`<sup>13</sup> - zbiór przecinający_
+
+We further define a `cutset`<sup>13</sup> to be a `disconnecting set`<sup>12</sup>, no proper subset of which is a
+`disconnecting set`<sup>12</sup>. In the above example, only the second `disconnecting set`<sup>12</sup> is a `cutset`<sup>13</sup>.
+
+_`Greedy algorithm`<sup>14</sup> - algorytm zachłanny, chciwy_
+
+It is known as a `greedy algorithm`<sup>14</sup>,
+and involves choosing edges of minimum weight in such a way that no cycle is created.
+
+_`Breadth first search`<sup>15</sup> - przeszukiwanie wszerz_ \
+_`Depth-first search`<sup>16</sup> - przeszukiwanie w głąb_
+
+There are two well-known search procedures - depth first search and breadth
+first search.
+
+_`Plane drawing`<sup>17</sup> - rysowanie na płaszczyźnie_ \
+_`Plane graph`<sup>18</sup> - graf płaski_
+
+Any such drawing is a `plane drawing`<sup>17</sup>. For convenience, we often use the abbreviation
+`plane graph`<sup>18</sup> for a `plane drawing`<sup>17</sup> of a planar graph.
+
+_`Contractible`<sup>19</sup> - zwężalny_
+
+To do so, we first define a graph H to be `contractible`<sup>19</sup> to K5 or K33 if we can obtain K5 or K33 by successively contracting edges of H
+
+**_Source: Graph theory Robein J.Wilson_**
