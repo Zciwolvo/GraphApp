@@ -22,10 +22,6 @@
 
 # SPIS TREŚCI
 
-- [ Sprawozdanie](#-sprawozdanie)
-  - [ Matematyka Dyskretna](#-matematyka-dyskretna)
-    - [Autorzy](#autorzy)
-    - [Prezentowany program](#prezentowany-program)
 - [SPIS TREŚCI](#spis-treści)
 - [CZĘŚĆ TECHNICZNA](#część-techniczna)
   - [WSTĘP](#wstęp)
